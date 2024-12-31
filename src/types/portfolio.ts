@@ -68,6 +68,7 @@ export interface Project {
   type: ProjectType
   period?: string
   duration?: string
+  shortSummary?: string
   overview?: {
     purpose?: string
     background?: string[]

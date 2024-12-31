@@ -7,6 +7,8 @@ export const projects: Project[] = [
     type: PROJECT_TYPES.TOY,
     period: '2024-12',
     duration: '개발기간 2주',
+    shortSummary:
+      '코드 습관 분석 + 자동 피드백 제공 토이 프로젝트. LLM 기반 협업 에이전트로 품질 향상',
     overview: {
       purpose:
         '개발자들의 코딩 습관을 분석하고 맞춤형 피드백을 제공하는 AI 기반 코드 분석 시스템',

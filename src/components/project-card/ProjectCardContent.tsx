@@ -1,4 +1,3 @@
-// src/components/project-card/ProjectCardContent.tsx
 import { Project, PROJECT_TYPES } from '../../types/portfolio'
 import { cn } from '../../lib/utils'
 
@@ -26,6 +25,24 @@ export function ProjectCardContent({
 
   return (
     <div className='text-body-color space-y-8'>
+      {/* ★ shortSummary가 있으면 상단에 출력 */}
+      {project.shortSummary && (
+        <div
+          className={cn(
+            'relative bg-slate-50/80 px-4 py-3 text-sm text-slate-600',
+            'border-l-2 border-transparent',
+            'transition-colors duration-200',
+            'dark:bg-slate-800/40 dark:text-slate-300',
+            project.type === PROJECT_TYPES.TOY
+              ? 'border-l-violet-400/70 hover:border-l-violet-400'
+              : 'border-l-blue-400/70 hover:border-l-blue-400'
+          )}>
+          <div className='relative leading-relaxed tracking-[-0.01em]'>
+            {project.shortSummary}
+          </div>
+        </div>
+      )}
+
       {/* 프로젝트 개요 */}
       {(project.overview?.purpose || project.overview?.background) && (
         <div className='space-y-2'>
@@ -83,7 +100,6 @@ export function ProjectCardContent({
           <h4 className='text-heading-color font-medium'>기술 스택</h4>
           <div className='space-y-2 pl-4'>
             {project.techStack.map((techGroup, groupIdx) => {
-              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               const [category, techsStr] = techGroup.split(':')
               const techs = techsStr?.split(',').map(item => item.trim()) ?? []
 
