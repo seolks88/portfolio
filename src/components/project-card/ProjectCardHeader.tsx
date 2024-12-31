@@ -64,7 +64,7 @@ export function ProjectCardHeader({ project }: ProjectCardHeaderProps) {
           {styles.icon}
         </div>
         <div className='space-y-1'>
-          <h3 className='text-heading-3 tracking-tight'>{project.title}</h3>
+          <h3 className='text-2xl tracking-tight'>{project.title}</h3>
           {project.subtitle && (
             <p className='text-body-sm text-body-color'>{project.subtitle}</p>
           )}

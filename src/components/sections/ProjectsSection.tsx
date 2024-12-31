@@ -56,22 +56,32 @@ export function ProjectsSection() {
 
       {/* 프로젝트 카드 목록 */}
       <div className='space-y-6'>
-        {projects.map((project, idx) => (
-          <ProjectCard
-            key={idx}
-            project={project}
-            isExpanded={expandedCards.has(project.title)}
-            onToggle={expanded => {
-              const newExpandedCards = new Set(expandedCards)
-              if (expanded) {
-                newExpandedCards.add(project.title)
-              } else {
-                newExpandedCards.delete(project.title)
-              }
-              setExpandedCards(newExpandedCards)
-            }}
-          />
-        ))}
+        {projects.map((project, idx) => {
+          const isExpandable = !!(
+            project.overview?.background ||
+            (project.features && project.features.length > 2) ||
+            project.learnings
+          )
+
+          return (
+            <ProjectCard
+              key={idx}
+              project={project}
+              isExpanded={isExpandable && expandedCards.has(project.title)}
+              onToggle={expanded => {
+                if (!isExpandable) return // 확장 불가능한 경우 토글하지 않음
+
+                const newExpandedCards = new Set(expandedCards)
+                if (expanded) {
+                  newExpandedCards.add(project.title)
+                } else {
+                  newExpandedCards.delete(project.title)
+                }
+                setExpandedCards(newExpandedCards)
+              }}
+            />
+          )
+        })}
       </div>
     </div>
   )

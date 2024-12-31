@@ -41,25 +41,29 @@
   }
 
   .dark {
-    --background: 220 10% 10%;
+    --background: 220 10% 11%;
     --foreground: 0 0% 95%;
-    --card: 220 10% 12%;
+    --card: 220 10% 14%;
     --card-foreground: 0 0% 95%;
-    --popover: 220 10% 12%;
+    --popover: 220 10% 16%;
     --popover-foreground: 0 0% 95%;
-    --primary: 0 0% 95%;
+    --primary: 220 10% 95%;
     --primary-foreground: 220 10% 10%;
-    --secondary: 220 10% 16%;
+    --secondary: 220 10% 20%;
     --secondary-foreground: 0 0% 95%;
-    --muted: 220 10% 16%;
+    --muted: 220 10% 20%;
     --muted-foreground: 220 10% 75%;
-    --accent: 220 10% 16%;
+    --accent: 220 10% 20%;
     --accent-foreground: 0 0% 95%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 95%;
-    --border: 220 10% 16%;
-    --input: 220 10% 16%;
+    --border: 220 10% 25%;
+    --input: 220 10% 25%;
     --ring: 220 10% 83.9%;
+    --primary: 220 10% 95%;
+    --muted-foreground: 220 10% 80%;
+    --accent-purple: 270 80% 70%;
+    --accent-blue: 210 75% 65%;
   }
 }
 
@@ -74,7 +78,11 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-pretendard);
-    @apply text-[17px] leading-relaxed;
+    font-size: 18px;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
 
   h1 {
@@ -170,6 +178,18 @@
 
   .hover-card {
     @apply transition-colors duration-200 hover:bg-slate-50/50 dark:hover:bg-slate-900/50;
+  }
+
+  .high-contrast {
+    @apply text-slate-900 dark:text-slate-100;
+  }
+
+  .text-highlight {
+    @apply bg-brandPrimary text-white px-2 py-1 rounded-md;
+  }
+
+  .brand-button {
+    @apply bg-brandPrimary text-white hover:bg-brandPrimary-dark transition-colors;
   }
 }
 

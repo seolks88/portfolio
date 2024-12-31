@@ -100,7 +100,7 @@ export function ProjectCardContent({
           <h4 className='text-heading-color font-medium'>기술 스택</h4>
           <div className='space-y-2 pl-4'>
             {project.techStack.map((techGroup, groupIdx) => {
-              const [category, techsStr] = techGroup.split(':')
+              const [, techsStr] = techGroup.split(':')
               const techs = techsStr?.split(',').map(item => item.trim()) ?? []
 
               return (
