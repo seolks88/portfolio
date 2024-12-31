@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Project, PROJECT_TYPES } from '@/types/portfolio'
 import { projects } from '@/data/projects'
 import { ProjectCard } from '@/components/project-card/ProjectCard'
 import { Rocket, Briefcase, ChevronDown } from 'lucide-react'

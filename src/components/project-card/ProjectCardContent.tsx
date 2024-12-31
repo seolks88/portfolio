@@ -15,7 +15,7 @@ export function ProjectCardContent({
     <li
       key={idx}
       className={cn(
-        "text-body-color relative pl-5 text-sm before:absolute before:left-0 before:top-[0.6em] before:h-1 before:w-1 before:rounded-full before:content-['']",
+        "text-body-color relative whitespace-normal break-keep pl-5 text-sm before:absolute before:left-0 before:top-[0.6em] before:h-1 before:w-1 before:rounded-full before:content-['']",
         project.type === PROJECT_TYPES.TOY
           ? 'before:bg-violet-400/70'
           : 'before:bg-blue-400/70'
@@ -23,20 +23,6 @@ export function ProjectCardContent({
       {content}
     </li>
   )
-
-  const groupTechStack = (techStack: string[]) => {
-    const result: { [key: string]: string[] } = {}
-    techStack.forEach(tech => {
-      const [category, ...items] = tech.split(':').map(s => s.trim())
-      if (!result[category]) {
-        result[category] = []
-      }
-      if (items.length > 0) {
-        result[category].push(...items[0].split(',').map(item => item.trim()))
-      }
-    })
-    return result
-  }
 
   return (
     <div className='text-body-color space-y-8'>
@@ -48,7 +34,7 @@ export function ProjectCardContent({
             {project.overview.purpose && (
               <li
                 className={cn(
-                  "text-body-color relative pl-5 text-sm before:absolute before:left-0 before:top-[0.6em] before:h-1 before:w-1 before:rounded-full before:content-['']",
+                  "text-body-color relative whitespace-normal break-keep pl-5 text-sm before:absolute before:left-0 before:top-[0.6em] before:h-1 before:w-1 before:rounded-full before:content-['']",
                   project.type === PROJECT_TYPES.TOY
                     ? 'before:bg-violet-400/70'
                     : 'before:bg-blue-400/70'
@@ -59,7 +45,7 @@ export function ProjectCardContent({
             {project.overview.background && !isExpanded && (
               <li
                 className={cn(
-                  "text-body-color relative pl-5 text-sm before:absolute before:left-0 before:top-[0.6em] before:h-1 before:w-1 before:rounded-full before:content-['']",
+                  "text-body-color relative whitespace-normal break-keep pl-5 text-sm before:absolute before:left-0 before:top-[0.6em] before:h-1 before:w-1 before:rounded-full before:content-['']",
                   project.type === PROJECT_TYPES.TOY
                     ? 'before:bg-violet-400/70'
                     : 'before:bg-blue-400/70'
@@ -97,6 +83,7 @@ export function ProjectCardContent({
           <h4 className='text-heading-color font-medium'>기술 스택</h4>
           <div className='space-y-2 pl-4'>
             {project.techStack.map((techGroup, groupIdx) => {
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               const [category, techsStr] = techGroup.split(':')
               const techs = techsStr?.split(',').map(item => item.trim()) ?? []
 

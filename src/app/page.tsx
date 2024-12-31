@@ -61,7 +61,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className='mb-16 flex flex-col items-center sm:mb-20'>
           <div className='relative mb-6 sm:mb-8'>
-            <Avatar className='h-28 w-28 shadow-md ring-4 ring-background transition-all duration-500 hover:scale-105 hover:shadow-lg sm:h-36 sm:w-36'>
+            <Avatar className='pointer-events-none h-28 w-28 shadow-md ring-4 ring-background transition-all duration-500 hover:scale-105 hover:shadow-lg sm:h-36 sm:w-36'>
               <AvatarImage
                 src='/avatar.jpg'
                 alt='설광수'
@@ -89,7 +89,6 @@ export default function Home() {
               있습니다.
             </p>
             <p>
-              7년차 개발자로서
               <span className='font-medium text-primary/90'>
                 {' '}
                 AI 시스템 설계
@@ -99,9 +98,19 @@ export default function Home() {
                 {' '}
                 LLM 활용 서비스 개발
               </span>
+              , 그리고
+              <span className='font-medium text-primary/90'>
+                {' '}
+                사용자 중심의 UX
+              </span>
               에 집중하고 있습니다.
             </p>
           </div>
+
+          {/* 소셜 버튼 위에 추가 */}
+          <p className='mt-4 text-xs text-muted-foreground/80'>
+            * 모든 디바이스에 최적화된 포트폴리오를 제공합니다
+          </p>
 
           <div
             className='mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-4'

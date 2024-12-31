@@ -106,7 +106,7 @@ export function ProjectCardDetail({ project }: { project: Project }) {
                   key={idx}
                   custom={idx}
                   variants={fadeInUp}
-                  className='relative text-sm before:absolute before:left-[-1em] before:content-["•"]'>
+                  className='word-break-keep-all relative whitespace-normal break-keep text-sm before:absolute before:left-[-1em] before:content-["•"]'>
                   {feature}
                 </motion.li>
               ))}

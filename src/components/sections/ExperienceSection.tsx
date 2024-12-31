@@ -39,7 +39,7 @@ export function ExperienceSection() {
                     </p>
                   </div>
                 </div>
-                <div className='flex flex-col items-end gap-2'>
+                <div className='flex w-full flex-col items-start gap-2 sm:w-auto sm:items-end'>
                   <div className='flex items-center gap-1.5'>
                     <Calendar className='h-4 w-4 text-blue-600/70 dark:text-blue-300/70' />
                     <span className='text-sm text-slate-600 dark:text-slate-300'>
@@ -47,7 +47,7 @@ export function ExperienceSection() {
                     </span>
                   </div>
                   {duration && (
-                    <div className='flex flex-col items-end gap-1'>
+                    <div className='flex flex-col items-start gap-1 sm:items-end'>
                       <div className='flex items-center gap-1.5'>
                         <Timer className='h-4 w-4 text-blue-600/70 dark:text-blue-300/70' />
                         <span className='text-sm text-slate-600 dark:text-slate-300'>

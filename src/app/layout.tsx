@@ -16,7 +16,8 @@ export default function RootLayout({
   return (
     <html
       lang='ko'
-      suppressHydrationWarning>
+      suppressHydrationWarning
+      data-theme='light'>
       <head>
         <meta
           name='viewport'
@@ -26,8 +27,8 @@ export default function RootLayout({
       <body>
         <ThemeProvider
           attribute='class'
-          defaultTheme='system'
-          enableSystem
+          defaultTheme='light'
+          enableSystem={false}
           disableTransitionOnChange>
           <div className='fixed right-4 top-4 z-50'>
             <ThemeToggle />

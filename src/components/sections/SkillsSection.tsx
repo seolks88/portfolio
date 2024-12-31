@@ -3,13 +3,17 @@
 import { skills } from '@/data/skills'
 import { BaseCard } from '@/components/BaseCard'
 import { Badge } from '@/components/ui/badge'
-import { Lightbulb, Layers, Cloud, Layout } from 'lucide-react'
-import { SkillCategory } from '@/types/portfolio'
+import { Cloud, Layout, Brain, Server } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { SkillCategory, Skill } from '@/types/portfolio'
 
-const CATEGORY_ICONS: Record<string, any> = {
-  'AI/LLM 핵심 역량': Lightbulb,
-  'Backend 기술': Layers,
+type CategoryIcon = {
+  [key: string]: React.ComponentType<{ className?: string }>
+}
+
+const CATEGORY_ICONS: CategoryIcon = {
+  'AI/LLM 핵심 역량': Brain,
+  'Backend 기술': Server,
   '클라우드 & 인프라': Cloud,
   'Frontend 기술': Layout
 }
@@ -120,7 +124,7 @@ export function SkillsSection() {
 
                 {/* 스킬 항목들 */}
                 <div className='space-y-4'>
-                  {category.items.map((item, idx) => (
+                  {category.items.map((item: Skill, idx: number) => (
                     <div
                       key={idx}
                       className='space-y-2'>
@@ -128,23 +132,25 @@ export function SkillsSection() {
                         {item.name}
                       </h4>
                       <ul className='space-y-2 pl-6'>
-                        {item.details.map((detail, detailIdx) => (
-                          <li
-                            key={detailIdx}
-                            className={cn(
-                              'text-body-color relative text-sm before:absolute before:left-[-1em] before:top-[0.6em] before:h-1 before:w-1 before:rounded-full before:content-[""]',
-                              category.category === 'AI/LLM 핵심 역량' &&
-                                'before:bg-violet-400/70',
-                              category.category === 'Backend 기술' &&
-                                'before:bg-blue-400/70',
-                              category.category === '클라우드 & 인프라' &&
-                                'before:bg-cyan-400/70',
-                              category.category === 'Frontend 기술' &&
-                                'before:bg-rose-400/70'
-                            )}>
-                            {detail}
-                          </li>
-                        ))}
+                        {item.details.map(
+                          (detail: string, detailIdx: number) => (
+                            <li
+                              key={detailIdx}
+                              className={cn(
+                                'text-body-color relative text-sm before:absolute before:left-[-1em] before:top-[0.6em] before:h-1 before:w-1 before:rounded-full before:content-[""]',
+                                category.category === 'AI/LLM 핵심 역량' &&
+                                  'before:bg-violet-400/70',
+                                category.category === 'Backend 기술' &&
+                                  'before:bg-blue-400/70',
+                                category.category === '클라우드 & 인프라' &&
+                                  'before:bg-cyan-400/70',
+                                category.category === 'Frontend 기술' &&
+                                  'before:bg-rose-400/70'
+                              )}>
+                              {detail}
+                            </li>
+                          )
+                        )}
                       </ul>
                     </div>
                   ))}

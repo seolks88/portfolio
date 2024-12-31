@@ -53,7 +53,7 @@ export function ProjectCardHeader({ project }: ProjectCardHeaderProps) {
   const styles = getProjectTypeStyles(project.type)
 
   return (
-    <div className='mb-6 flex items-start justify-between gap-4'>
+    <div className='mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between'>
       {/* 왼쪽 아이콘 + 제목 */}
       <div className='flex items-center gap-4'>
         <div
@@ -72,7 +72,7 @@ export function ProjectCardHeader({ project }: ProjectCardHeaderProps) {
       </div>
 
       {/* 오른쪽 기간 정보 */}
-      <div className='flex flex-col items-end gap-2.5'>
+      <div className='flex flex-col items-start gap-2.5 sm:items-end'>
         {project.period && (
           <div className='flex items-center gap-2 rounded-full bg-slate-100/50 px-3 py-1 text-sm font-medium text-slate-600 dark:bg-slate-800/50 dark:text-slate-300'>
             <Calendar className={cn('h-4 w-4', styles.periodIcon)} />

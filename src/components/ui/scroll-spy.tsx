@@ -1,20 +1,18 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { cn } from '@/lib/utils'
 
 interface ScrollSpyProps {
   sections: { id: string; label: string }[]
   offset?: number
-  activeClass?: string
   className?: string
+  activeClass?: string
   children: (active: string) => React.ReactNode
 }
 
 export function ScrollSpy({
   sections,
   offset = 0,
-  activeClass,
   className,
   children
 }: ScrollSpyProps) {
