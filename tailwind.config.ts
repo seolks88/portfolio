@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss'
 
-const config = {
+const config: Config = {
   darkMode: ['class'],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -8,7 +8,6 @@ const config = {
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}'
   ],
-  prefix: '',
   theme: {
     container: {
       center: true,
@@ -35,6 +34,7 @@ const config = {
         'body-sm': ['0.9375rem', { lineHeight: '1.6' }]
       },
       colors: {
+        // 기존 컬러 설정 그대로 둠
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -67,6 +67,16 @@ const config = {
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
+        },
+
+        // ★ 추가: 명도 대비가 높은 브랜드 색상
+        brandPrimary: {
+          DEFAULT: '#1a6cff', // 예시
+          dark: '#164ac7'
+        },
+        brandSecondary: {
+          DEFAULT: '#ff8b13', // 예시
+          dark: '#d16f0d'
         }
       },
       borderRadius: {
@@ -91,6 +101,6 @@ const config = {
     }
   },
   plugins: [require('tailwindcss-animate')]
-} satisfies Config
+}
 
 export default config
