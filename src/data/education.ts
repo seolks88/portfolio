@@ -15,7 +15,7 @@ export const education: Education[] = [
       },
       {
         title: '의료 분야 관련 개인 정보 보호 처리 관련 연구',
-        papers: ['IEEE ACCESS (Impact Factor: 3.4, 피인용수: 131회)']
+        papers: ['IEEE ACCESS (Impact Factor: 3.4, 피인용수: 134회)']
       },
       {
         title: '소셜네트워크에서 사용자 간 친밀도 관련 연구'

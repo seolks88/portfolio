@@ -1,9 +1,12 @@
+// src/data/projects.ts
+
 import { PROJECT_TYPES, Project } from '@/types/portfolio'
 
 export const projects: Project[] = [
   {
     title: '개인화 코드 분석 시스템 개발',
     subtitle: '토이프로젝트, CodeCast',
+    award: 'GALA2024 Special Award',
     type: PROJECT_TYPES.TOY,
     period: '2024-12',
     duration: '개발기간 2주',
@@ -15,7 +18,7 @@ export const projects: Project[] = [
       background: [
         '코딩 습관 개선 및 코드 품질 향상을 위해 기획',
         'LLM을 활용해 자동 코드 리뷰 및 분석 과정을 구축, 반복 피드백 제공',
-        '매일 오전 9시, 이전날 변경된 코드를 분석하여 “팟캐스트” 형식 인사이트 제공'
+        '매일 오전 9시, 이전날 변경된 코드를 분석하여 "팟캐스트" 형식 인사이트 제공'
       ],
       marketAnalysis: [
         '기존 서비스는 민감 코드정보를 외부 클라우드로 전송하는 보안 이슈 존재',
@@ -40,13 +43,20 @@ export const projects: Project[] = [
       'AI/ML: RAG, Multi-Agent System',
       'Database: Vector DB, Long-term Memory Store',
       'Frontend: React, TypeScript, Next.js'
-    ]
+    ],
+    images: {
+      gallery: [
+        '/images/projects/codecast/image_1.png',
+        '/images/projects/codecast/image_2.png'
+      ]
+    }
   },
   {
     title: '정책 추천 시스템 개발',
-    subtitle: '토이프로젝트, 정책이음, 2024 서울프롬프톤 공모전',
+    subtitle: '토이프로젝트, 정책이음',
+    award: '2024 서울프롬프톤 공모전 우수상',
     type: PROJECT_TYPES.TOY,
-    period: '2024-12',
+    period: '2024-07',
     shortSummary:
       '사용자 맞춤 정책을 LLM으로 대화형 추천. FAQ 자동생성과 웹 검색 연동',
     overview: {
@@ -86,10 +96,18 @@ export const projects: Project[] = [
       'Frontend: React, Next.js, TypeScript, Tailwind, Redux'
     ],
     demo: {
-      video:
-        'https://drive.google.com/file/d/1TcZYelrb7lDDAXdrtnLTlhBOWEBQh-UK/view?usp=sharing',
-      presentation:
-        'https://drive.google.com/file/d/160jp_-A4dpgV1Abi9xA21o8UpZAWA30f/view?usp=drive_link'
+      video: {
+        title: '정책이음 데모 영상',
+        url: 'https://drive.google.com/file/d/1TcZYelrb7lDDAXdrtnLTlhBOWEBQh-UK/view?usp=sharing',
+        embedUrl:
+          'https://drive.google.com/file/d/1TcZYelrb7lDDAXdrtnLTlhBOWEBQh-UK/preview'
+      },
+      presentation: {
+        title: '정책이음 발표자료',
+        url: 'https://drive.google.com/file/d/160jp_-A4dpgV1Abi9xA21o8UpZAWA30f/view?usp=drive_link',
+        embedUrl:
+          'https://drive.google.com/file/d/160jp_-A4dpgV1Abi9xA21o8UpZAWA30f/preview'
+      }
     },
     features: [
       '멀티턴 대화 시스템 (컨텍스트 유지)',
@@ -297,8 +315,12 @@ export const projects: Project[] = [
       'AI: GPT-3.5/4'
     ],
     demo: {
-      video:
-        'https://drive.google.com/file/d/1eNwKt5s0et-vMnTzFz8faELMdPi3nYx2/view?usp=sharing'
+      video: {
+        title: '다이어그램 생성기 데모',
+        url: 'https://drive.google.com/file/d/1eNwKt5s0et-vMnTzFz8faELMdPi3nYx2/view?usp=sharing',
+        embedUrl:
+          'https://drive.google.com/file/d/1eNwKt5s0et-vMnTzFz8faELMdPi3nYx2/preview'
+      }
     }
   },
   {
@@ -386,7 +408,7 @@ export const projects: Project[] = [
       'Elasticsearch 분석을 통해 쇼핑 트렌드·키워드 흐름 파악이 용이해짐'
     ],
     techStack: [
-      'Backend: Python, Scrapy',
+      'Backend: Python, Selenium',
       'Database: Elasticsearch',
       'Infrastructure: Multi-node Architecture'
     ]

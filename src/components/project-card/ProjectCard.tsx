@@ -2,7 +2,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import { Button } from '../ui/button'
-import { Project } from '../../types/portfolio'
+import { Project } from '@/types/portfolio'
 import { ProjectCardHeader } from './ProjectCardHeader'
 import { ProjectCardContent } from './ProjectCardContent'
 import { ProjectCardDetail } from './ProjectCardDetail'

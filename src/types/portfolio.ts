@@ -49,50 +49,110 @@ export interface SkillCategory {
   items: Skill[]
 }
 
-export interface ProjectDemo {
-  video?: string
-  presentation?: string
+export enum PROJECT_TYPES {
+  TOY = 'toy',
+  COMPANY = 'company'
 }
 
-export const PROJECT_TYPES = {
-  TOY: 'toy',
-  COMPANY: 'company',
-  OTHER: 'other'
-} as const
+interface DemoContent {
+  title: string
+  url: string
+  embedUrl: string
+}
 
-export type ProjectType = (typeof PROJECT_TYPES)[keyof typeof PROJECT_TYPES]
+export interface Demo {
+  video?: DemoContent
+  presentation?: DemoContent
+}
+
+export interface Overview {
+  purpose?: string
+  background?: string[]
+  ideas?: string[]
+  implementation?: string[]
+  marketAnalysis?: string[]
+}
+
+export interface Learnings {
+  [key: string]: string[]
+}
+
+interface ProjectLinks {
+  github?: string
+  demo?: {
+    video?: {
+      title: string
+      url: string
+      embedUrl: string
+    }
+    presentation?: {
+      title: string
+      url: string
+      embedUrl: string
+    }
+  }
+  live?: string
+  blog?: string
+}
 
 export interface Project {
   title: string
   subtitle?: string
-  type: ProjectType
+  award?: string
+  type: string
   period?: string
   duration?: string
   shortSummary?: string
-  overview?: {
-    purpose?: string
-    background?: string[]
-    implementation?: string[]
-    marketAnalysis?: string[]
-    ideas?: string[]
-    role?: string[]
-    features?: string[]
-  }
-  features?: string[]
+  overview?: Overview
   achievements?: string[]
+  features?: string[]
+  learnings?: Learnings
   techStack?: string[]
-  demo?: {
-    video?: string
-    presentation?: string
-  }
-  learnings?: {
-    conversation?: string[]
-    ux?: string[]
-    faq?: string[]
-    backend?: string[]
-    frontend?: string[]
-    devops?: string[]
-    [key: string]: string[] | undefined
-  }
   github?: string
+  demo?: {
+    video?: {
+      title: string
+      url: string
+      embedUrl: string
+    }
+    presentation?: {
+      title: string
+      url: string
+      embedUrl: string
+    }
+  }
+  links?: ProjectLinks
+  images?: {
+    thumbnail?: string
+    gallery?: string[]
+    alt?: string
+  }
+}
+
+export enum CONTENT_TYPES {
+  PROJECT = 'project',
+  RESEARCH = 'research'
+}
+
+type ResearchProgress = {
+  completed?: string[]
+  ongoing?: string[]
+  planned?: string[]
+}
+
+export interface ResearchContent {
+  type: CONTENT_TYPES.RESEARCH
+  title: string
+  period: string
+  shortSummary: string
+  overview: {
+    purpose: string
+    background?: string[]
+    progress?: ResearchProgress
+  }
+  topics: string[]
+  techStack: string[]
+  learnings?: {
+    [key: string]: string[]
+  }
 }

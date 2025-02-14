@@ -1,5 +1,6 @@
-import { Project, PROJECT_TYPES } from '../../types/portfolio'
+import { Project, PROJECT_TYPES } from '@/types/portfolio'
 import { cn } from '../../lib/utils'
+import { Github, Play, FileText } from 'lucide-react'
 
 interface ProjectCardContentProps {
   project: Project
@@ -122,6 +123,68 @@ export function ProjectCardContent({
                 </div>
               )
             })}
+          </div>
+        </div>
+      )}
+
+      {/* 프로젝트 링크 */}
+      {(project.github ||
+        project.demo?.video ||
+        project.demo?.presentation) && (
+        <div className='space-y-2'>
+          <h4 className='text-heading-color font-medium'>프로젝트 링크</h4>
+          <div className='flex flex-wrap gap-2'>
+            {project.github && (
+              <a
+                href={project.github}
+                target='_blank'
+                rel='noopener noreferrer'
+                className={cn(
+                  'inline-flex items-center gap-1.5 rounded-full px-3 py-1',
+                  'text-sm font-medium',
+                  'transition-colors duration-200',
+                  project.type === PROJECT_TYPES.TOY
+                    ? 'bg-violet-50 text-violet-700 hover:bg-violet-100 dark:bg-violet-400/10 dark:text-violet-400 dark:hover:bg-violet-400/20'
+                    : 'bg-blue-50 text-blue-700 hover:bg-blue-100 dark:bg-blue-400/10 dark:text-blue-400 dark:hover:bg-blue-400/20'
+                )}>
+                <Github className='h-4 w-4' />
+                GitHub
+              </a>
+            )}
+            {project.demo?.video && (
+              <a
+                href={project.demo.video.url}
+                target='_blank'
+                rel='noopener noreferrer'
+                className={cn(
+                  'inline-flex items-center gap-1.5 rounded-full px-3 py-1',
+                  'text-sm font-medium',
+                  'transition-colors duration-200',
+                  project.type === PROJECT_TYPES.TOY
+                    ? 'bg-violet-50 text-violet-700 hover:bg-violet-100 dark:bg-violet-400/10 dark:text-violet-400 dark:hover:bg-violet-400/20'
+                    : 'bg-blue-50 text-blue-700 hover:bg-blue-100 dark:bg-blue-400/10 dark:text-blue-400 dark:hover:bg-blue-400/20'
+                )}>
+                <Play className='h-4 w-4' />
+                데모 영상
+              </a>
+            )}
+            {project.demo?.presentation && (
+              <a
+                href={project.demo.presentation.url}
+                target='_blank'
+                rel='noopener noreferrer'
+                className={cn(
+                  'inline-flex items-center gap-1.5 rounded-full px-3 py-1',
+                  'text-sm font-medium',
+                  'transition-colors duration-200',
+                  project.type === PROJECT_TYPES.TOY
+                    ? 'bg-violet-50 text-violet-700 hover:bg-violet-100 dark:bg-violet-400/10 dark:text-violet-400 dark:hover:bg-violet-400/20'
+                    : 'bg-blue-50 text-blue-700 hover:bg-blue-100 dark:bg-blue-400/10 dark:text-blue-400 dark:hover:bg-blue-400/20'
+                )}>
+                <FileText className='h-4 w-4' />
+                발표자료
+              </a>
+            )}
           </div>
         </div>
       )}

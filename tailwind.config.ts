@@ -17,6 +17,11 @@ const config: Config = {
       }
     },
     extend: {
+      spacing: {
+        '72': '18rem',
+        '84': '21rem',
+        '96': '24rem'
+      },
       fontSize: {
         'heading-1': [
           'clamp(2rem, 5vw, 2.75rem)',
@@ -34,7 +39,6 @@ const config: Config = {
         'body-sm': ['0.9375rem', { lineHeight: '1.6' }]
       },
       colors: {
-        // 기존 컬러 설정 그대로 둠
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -68,14 +72,13 @@ const config: Config = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
         },
-
-        // ★ 추가: 명도 대비가 높은 브랜드 색상
+        // 명도 대비가 높은 브랜드 색상
         brandPrimary: {
-          DEFAULT: '#1a6cff', // 예시
+          DEFAULT: '#1a6cff',
           dark: '#164ac7'
         },
         brandSecondary: {
-          DEFAULT: '#ff8b13', // 예시
+          DEFAULT: '#ff8b13',
           dark: '#d16f0d'
         }
       },

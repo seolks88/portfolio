@@ -7,7 +7,7 @@ import ScrollProgress from '@/components/magicui/scroll-progress'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
-import { Mail, Github, ExternalLink } from 'lucide-react'
+import { Github } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 
 // 섹션 컴포넌트 임포트
@@ -15,13 +15,15 @@ import { ExperienceSection } from '@/components/sections/ExperienceSection'
 import { EducationSection } from '@/components/sections/EducationSection'
 import { SkillsSection } from '@/components/sections/SkillsSection'
 import { ProjectsSection } from '@/components/sections/ProjectsSection'
+import { ResearchSection } from '@/components/sections/ResearchSection'
 
 export default function Home() {
   const sections = [
     { id: '경력', label: '경력' },
     { id: '학력', label: '학력' },
     { id: '기술', label: '기술' },
-    { id: '프로젝트', label: '프로젝트' }
+    { id: '프로젝트', label: '프로젝트' },
+    { id: '현재 진행 중', label: '연구' }
   ]
 
   return (
@@ -50,8 +52,21 @@ export default function Home() {
       </ScrollSpy>
 
       <main className='container mx-auto max-w-5xl px-4 py-6 sm:px-6 sm:py-10'>
-        {/* 테마 토글 버튼 */}
-        <div className='fixed right-4 top-4 z-50'>
+        {/* 테마 토글 버튼과 깃허브 링크 */}
+        <div className='fixed right-4 top-4 z-50 flex items-center gap-2'>
+          <Button
+            variant='ghost'
+            size='icon'
+            className='relative h-9 w-9 rounded-full'
+            asChild>
+            <a
+              href='https://github.com/seolks88'
+              target='_blank'
+              rel='noopener noreferrer'
+              aria-label='GitHub 프로필 방문하기'>
+              <Github className='h-4 w-4' />
+            </a>
+          </Button>
           <ThemeToggle />
         </div>
 
@@ -63,7 +78,7 @@ export default function Home() {
           <div className='relative mb-6 sm:mb-8'>
             <Avatar className='pointer-events-none h-28 w-28 shadow-md ring-4 ring-background transition-all duration-500 hover:scale-105 hover:shadow-lg sm:h-36 sm:w-36'>
               <AvatarImage
-                src='/avatar.jpg'
+                src='/avatar.png'
                 alt='설광수'
                 className='object-cover object-center'
               />
@@ -80,7 +95,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className='text-body-base mx-auto mt-8 max-w-prose space-y-4 px-4 text-center sm:px-0'>
+          <div className='mx-auto mt-8 max-w-prose space-y-4 px-4 text-center text-body-base sm:px-0'>
             <p>
               <span className='font-medium text-primary/90'>
                 최신 AI 기술 트렌드
@@ -111,7 +126,7 @@ export default function Home() {
           <p className='mt-4 text-xs text-muted-foreground/80'>
             * 모든 디바이스에 최적화된 포트폴리오를 제공합니다
           </p>
-
+          {/* 
           <div
             className='mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-4'
             style={{ animationDelay: '0.4s' }}>
@@ -167,7 +182,7 @@ export default function Home() {
                 </Button>
               )
             )}
-          </div>
+          </div> */}
         </motion.section>
 
         {/* 메인 콘텐츠 */}
@@ -176,7 +191,8 @@ export default function Home() {
             { title: '경력', Component: ExperienceSection },
             { title: '학력', Component: EducationSection },
             { title: '기술', Component: SkillsSection },
-            { title: '프로젝트', Component: ProjectsSection }
+            { title: '프로젝트', Component: ProjectsSection },
+            { title: '현재 진행 중', Component: ResearchSection }
           ].map(({ title, Component }, index) => (
             <motion.section
               key={title}

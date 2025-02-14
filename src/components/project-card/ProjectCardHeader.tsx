@@ -1,5 +1,6 @@
 // src/components/project-card/ProjectCardHeader.tsx
 import { Briefcase, Calendar, Code2, Rocket, Timer } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
 import { Project, PROJECT_TYPES } from '../../types/portfolio'
 import { cn } from '../../lib/utils'
 
@@ -65,8 +66,22 @@ export function ProjectCardHeader({ project }: ProjectCardHeaderProps) {
         </div>
         <div className='space-y-1'>
           <h3 className='text-2xl tracking-tight'>{project.title}</h3>
-          {project.subtitle && (
-            <p className='text-body-sm text-body-color'>{project.subtitle}</p>
+          {(project.subtitle || project.award) && (
+            <div className='text-body-color flex flex-wrap items-center gap-2 text-body-sm'>
+              {project.subtitle && <span>{project.subtitle}</span>}
+              {project.award && (
+                <Badge
+                  variant='outline'
+                  className={cn(
+                    'border-2 font-medium',
+                    project.type === PROJECT_TYPES.TOY
+                      ? 'border-violet-400/50 bg-violet-50/50 text-violet-700 dark:border-violet-400/30 dark:bg-violet-400/10 dark:text-violet-300'
+                      : 'border-blue-400/50 bg-blue-50/50 text-blue-700 dark:border-blue-400/30 dark:bg-blue-400/10 dark:text-blue-300'
+                  )}>
+                  🏆 {project.award}
+                </Badge>
+              )}
+            </div>
           )}
         </div>
       </div>

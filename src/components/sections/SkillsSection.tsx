@@ -49,18 +49,17 @@ export function SkillsSection() {
   const coreTechStacks = {
     'AI/LLM': [
       'LLM',
-      'RAG Pipeline',
+      'RAG',
       'Data Processing',
       'Text Embedding',
       'VectorDB',
-      'Reranking',
       'LangGraph'
     ],
     Backend: ['Python', 'FastAPI', 'Elasticsearch', 'DynamoDB', 'MQTT'],
     Cloud: ['AWS Lambda', 'API Gateway', 'IoT Core', 'GCP VertexAI'],
     Frontend: [
-      'React 18',
-      'Next.js 14',
+      'React',
+      'Next.js',
       'TypeScript',
       'Redux',
       'TailwindCSS',
