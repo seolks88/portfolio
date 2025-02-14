@@ -35,7 +35,8 @@ export interface Experience {
   company: string
   period: string
   role: string
-  duration: string
+  startDate: string
+  durationSubtext?: string
   details: string[]
 }
 
@@ -80,16 +81,8 @@ export interface Learnings {
 interface ProjectLinks {
   github?: string
   demo?: {
-    video?: {
-      title: string
-      url: string
-      embedUrl: string
-    }
-    presentation?: {
-      title: string
-      url: string
-      embedUrl: string
-    }
+    video?: DemoContent
+    presentation?: DemoContent
   }
   live?: string
   blog?: string
@@ -110,16 +103,8 @@ export interface Project {
   techStack?: string[]
   github?: string
   demo?: {
-    video?: {
-      title: string
-      url: string
-      embedUrl: string
-    }
-    presentation?: {
-      title: string
-      url: string
-      embedUrl: string
-    }
+    video?: DemoContent
+    presentation?: DemoContent
   }
   links?: ProjectLinks
   images?: {

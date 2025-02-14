@@ -3,7 +3,7 @@
 import { skills } from '@/data/skills'
 import { BaseCard } from '@/components/BaseCard'
 import { Badge } from '@/components/ui/badge'
-import { Cloud, Layout, Brain, Server } from 'lucide-react'
+import { Cloud, Layout, Brain, Server, Code } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { SkillCategory, Skill } from '@/types/portfolio'
 
@@ -45,52 +45,55 @@ const CATEGORY_COLORS: Record<
 }
 
 export function SkillsSection() {
-  // 주요 기술 스택 요약
   const coreTechStacks = {
-    'AI/LLM': [
-      'LLM',
-      'RAG',
-      'Data Processing',
-      'Text Embedding',
-      'VectorDB',
-      'LangGraph'
-    ],
+    'AI/LLM': ['LangChain', 'LlamaIndex', 'RAG', 'VectorDB'],
     Backend: ['Python', 'FastAPI', 'Elasticsearch', 'DynamoDB', 'MQTT'],
-    Cloud: ['AWS Lambda', 'API Gateway', 'IoT Core', 'GCP VertexAI'],
+    Cloud: ['AWS', 'GCP'],
     Frontend: [
       'React',
       'Next.js',
       'TypeScript',
       'Redux',
       'TailwindCSS',
-      'ShadcnUI'
-    ]
-  }
+      'ShadcnUI',
+      'Framer Motion'
+    ],
+    Tools: ['Docker', 'Git', 'Firebase', 'Github Actions']
+  } as const
 
   return (
     <div className='max-w-full space-y-10'>
       {/* 주요 기술 스택 요약 */}
-      <div className='mx-4 rounded-lg border border-slate-200 bg-gradient-to-br from-slate-50/50 to-white dark:border-slate-800 dark:from-slate-800/40 dark:to-slate-900/40 sm:mx-0'>
-        <div className='space-y-5 p-4 sm:p-8'>
-          <h3 className='text-heading-3 tracking-tight'>주요 기술 스택</h3>
+      <div className='mx-4 rounded-lg border border-slate-200 bg-gradient-to-br from-slate-50/50 via-white to-slate-50/30 shadow-sm dark:border-slate-800 dark:from-slate-800/40 dark:via-slate-900/40 dark:to-slate-800/30 sm:mx-0'>
+        <div className='space-y-5 p-4 sm:p-6'>
+          <div className='flex items-center gap-3'>
+            <div className='rounded-md bg-gradient-to-br from-slate-100 to-white p-2 shadow-sm ring-1 ring-slate-200/50 transition-colors duration-200 group-hover:ring-slate-300/50 dark:from-slate-800 dark:to-slate-900 dark:ring-slate-700/50 dark:group-hover:ring-slate-600/50'>
+              <Code className='h-5 w-5 text-slate-600/80 dark:text-slate-300/80' />
+            </div>
+            <h3 className='bg-gradient-to-br from-slate-900 to-slate-600 bg-clip-text text-heading-3 font-semibold tracking-tight text-transparent dark:from-slate-100 dark:to-slate-400'>
+              주요 기술 스택
+            </h3>
+          </div>
 
-          <div className='text-body-color space-y-4'>
+          <div className='text-body-color space-y-3'>
             {Object.entries(coreTechStacks).map(([category, techs]) => (
               <div
                 key={category}
-                className='flex flex-wrap items-center gap-3'>
-                <span className='min-w-20 text-sm font-semibold'>
+                className='group flex flex-wrap items-center gap-4 rounded-md transition-colors duration-200 hover:bg-slate-50/50 dark:hover:bg-slate-800/50'>
+                <span className='w-[90px] text-[15px] font-medium tracking-tight text-slate-700 dark:text-slate-300'>
                   {category}
                 </span>
-                <div className='flex flex-wrap gap-2'>
-                  {techs.map(tech => (
-                    <Badge
-                      key={tech}
-                      variant='outline'
-                      className='border-slate-200 bg-white/50 px-3 py-1 text-sm font-medium text-slate-700 transition-all duration-200 hover:scale-105 hover:bg-slate-50 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-slate-200'>
-                      {tech}
-                    </Badge>
-                  ))}
+                <div className='flex-1'>
+                  <div className='flex flex-wrap gap-2'>
+                    {techs.map(tech => (
+                      <Badge
+                        key={tech}
+                        variant='outline'
+                        className='border-slate-200 bg-white/80 px-2.5 py-0.5 text-[13px] font-medium tracking-tight text-slate-700 shadow-sm transition-all duration-200 hover:scale-[1.02] hover:bg-slate-50 hover:text-slate-900 group-hover:border-slate-300/70 dark:border-slate-800 dark:bg-slate-900/80 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-slate-200 dark:group-hover:border-slate-700'>
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
@@ -127,7 +130,7 @@ export function SkillsSection() {
                     <div
                       key={idx}
                       className='space-y-2'>
-                      <h4 className='text-heading-color font-medium'>
+                      <h4 className='text-heading-color text-base font-semibold tracking-tight'>
                         {item.name}
                       </h4>
                       <ul className='space-y-2 pl-6'>

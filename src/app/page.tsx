@@ -18,17 +18,38 @@ import { ProjectsSection } from '@/components/sections/ProjectsSection'
 import { ResearchSection } from '@/components/sections/ResearchSection'
 
 export default function Home() {
+  // 우측 동그라미 목록 (첫 번째 항목: 인트로)
   const sections = [
-    { id: '경력', label: '경력' },
-    { id: '학력', label: '학력' },
-    { id: '기술', label: '기술' },
-    { id: '프로젝트', label: '프로젝트' },
-    { id: '현재 진행 중', label: '연구' }
+    { id: 'intro', label: '소개' },
+    { id: 'experience', label: '경력' },
+    { id: 'education', label: '학력' },
+    { id: 'skills', label: '기술' },
+    { id: 'projects', label: '프로젝트' },
+    { id: 'research', label: '연구' }
   ]
+
+  // 스크롤 이동 함수
+  // 필요 시 headerOffset 값(헤더 높이)을 조절하세요
+  const scrollToSection = (id: string) => {
+    const target = document.getElementById(id)
+    if (!target) return
+
+    const headerOffset = 80 // 고정 헤더 높이(px)
+    const elementPosition = target.getBoundingClientRect().top
+    const offsetPosition = window.pageYOffset + elementPosition - headerOffset
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    })
+  }
 
   return (
     <div className='relative min-h-screen'>
+      {/* 상단 스크롤 진행 표시 */}
       <ScrollProgress />
+
+      {/* 우측 동그라미 스크롤 스파이 */}
       <ScrollSpy
         sections={sections}
         offset={-100}
@@ -36,14 +57,14 @@ export default function Home() {
         className='fixed right-6 top-1/2 z-50 hidden -translate-y-1/2 flex-col items-center gap-4 lg:flex'>
         {active =>
           sections.map(section => (
-            <a
+            <button
               key={section.id}
-              href={`#${section.id}`}
+              onClick={() => scrollToSection(section.id)}
               className={cn(
                 'flex h-3 w-3 rounded-full transition-all hover:scale-125',
                 active === section.id
-                  ? 'border-1 border-sky-600 bg-sky-500 dark:border-sky-500 dark:bg-sky-400'
-                  : 'border-1 border-slate-300 bg-slate-200 hover:border-sky-400 dark:border-slate-600 dark:bg-slate-700 dark:hover:border-sky-500'
+                  ? 'border border-sky-600 bg-sky-500 dark:border-sky-500 dark:bg-sky-400'
+                  : 'border border-slate-300 bg-slate-200 hover:border-sky-400 dark:border-slate-600 dark:bg-slate-700 dark:hover:border-sky-500'
               )}
               aria-label={section.label}
             />
@@ -51,8 +72,9 @@ export default function Home() {
         }
       </ScrollSpy>
 
+      {/* 메인 콘텐츠 */}
       <main className='container mx-auto max-w-5xl px-4 py-6 sm:px-6 sm:py-10'>
-        {/* 테마 토글 버튼과 깃허브 링크 */}
+        {/* 상단 고정: 테마 토글 및 GitHub 링크 */}
         <div className='fixed right-4 top-4 z-50 flex items-center gap-2'>
           <Button
             variant='ghost'
@@ -70,7 +92,9 @@ export default function Home() {
           <ThemeToggle />
         </div>
 
+        {/* [인트로 섹션] => id="intro" */}
         <motion.section
+          id='intro'
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -105,7 +129,6 @@ export default function Home() {
             </p>
             <p>
               <span className='font-medium text-primary/90'>
-                {' '}
                 AI 시스템 설계
               </span>
               와
@@ -122,93 +145,86 @@ export default function Home() {
             </p>
           </div>
 
-          {/* 소셜 버튼 위에 추가 */}
           <p className='mt-4 text-xs text-muted-foreground/80'>
             * 모든 디바이스에 최적화된 포트폴리오를 제공합니다
           </p>
-          {/* 
-          <div
-            className='mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-4'
-            style={{ animationDelay: '0.4s' }}>
-            {[
-              {
-                href: 'mailto:seolks88@gmail.com',
-                icon: Mail,
-                text: 'seolks88@gmail.com',
-                label: '이메일로 연락하기',
-                variant: 'outline' as const,
-                className:
-                  'border-blue-200 hover:border-blue-300 hover:bg-blue-50 dark:border-blue-800 dark:hover:border-blue-700 dark:hover:bg-blue-900/50'
-              },
-              {
-                href: 'https://github.com/seolks88',
-                icon: Github,
-                text: 'GitHub',
-                label: '프로젝트 살펴보기',
-                variant: 'outline' as const,
-                external: true,
-                className:
-                  'border-slate-200 hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700 dark:hover:border-slate-600 dark:hover:bg-slate-800/50'
-              }
-            ].map(
-              ({
-                href,
-                icon: Icon,
-                text,
-                label,
-                variant,
-                external,
-                className
-              }) => (
-                <Button
-                  key={href}
-                  variant={variant}
-                  asChild
-                  className={cn('group relative', className)}>
-                  <a
-                    href={href}
-                    target={external ? '_blank' : undefined}
-                    rel={external ? 'noopener noreferrer' : undefined}
-                    className='flex items-center gap-2'
-                    aria-label={label}>
-                    <Icon className='h-4 w-4 transition-transform group-hover:scale-110' />
-                    <span>{text}</span>
-                    {external && (
-                      <span className='absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-white text-slate-900 ring-[1.5px] ring-slate-200 dark:bg-white dark:text-slate-900 dark:ring-slate-200'>
-                        <ExternalLink className='h-2.5 w-2.5' />
-                      </span>
-                    )}
-                  </a>
-                </Button>
-              )
-            )}
-          </div> */}
         </motion.section>
 
-        {/* 메인 콘텐츠 */}
         <div className='space-y-16 sm:space-y-24'>
-          {[
-            { title: '경력', Component: ExperienceSection },
-            { title: '학력', Component: EducationSection },
-            { title: '기술', Component: SkillsSection },
-            { title: '프로젝트', Component: ProjectsSection },
-            { title: '현재 진행 중', Component: ResearchSection }
-          ].map(({ title, Component }, index) => (
-            <motion.section
-              key={title}
-              id={title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.5, delay: 0.1 * index }}
-              className='scroll-mt-16'>
-              <div className='mb-8 flex items-center gap-4 sm:mb-10'>
-                <h2>{title}</h2>
-                <Separator className='flex-1' />
-              </div>
-              <Component />
-            </motion.section>
-          ))}
+          {/* [경력 섹션] => id="experience" */}
+          <motion.section
+            id='experience'
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className='scroll-mt-16'>
+            <div className='mb-8 flex items-center gap-4 sm:mb-10'>
+              <h2>경력</h2>
+              <Separator className='flex-1' />
+            </div>
+            <ExperienceSection />
+          </motion.section>
+
+          {/* [학력 섹션] => id="education" */}
+          <motion.section
+            id='education'
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className='scroll-mt-16'>
+            <div className='mb-8 flex items-center gap-4 sm:mb-10'>
+              <h2>학력</h2>
+              <Separator className='flex-1' />
+            </div>
+            <EducationSection />
+          </motion.section>
+
+          {/* [기술 섹션] => id="skills" */}
+          <motion.section
+            id='skills'
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className='scroll-mt-16'>
+            <div className='mb-8 flex items-center gap-4 sm:mb-10'>
+              <h2>기술</h2>
+              <Separator className='flex-1' />
+            </div>
+            <SkillsSection />
+          </motion.section>
+
+          {/* [프로젝트 섹션] => id="projects" */}
+          <motion.section
+            id='projects'
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className='scroll-mt-16'>
+            <div className='mb-8 flex items-center gap-4 sm:mb-10'>
+              <h2>프로젝트</h2>
+              <Separator className='flex-1' />
+            </div>
+            <ProjectsSection />
+          </motion.section>
+
+          {/* [연구 섹션] => id="research" */}
+          <motion.section
+            id='research'
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className='scroll-mt-16'>
+            <div className='mb-8 flex items-center gap-4 sm:mb-10'>
+              <h2>연구</h2>
+              <Separator className='flex-1' />
+            </div>
+            <ResearchSection />
+          </motion.section>
         </div>
       </main>
     </div>

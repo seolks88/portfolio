@@ -10,6 +10,20 @@ export function ProjectsSection() {
     new Set()
   )
 
+  // 개별 카드 토글 핸들러
+  const handleToggleCard = (title: string, expanded: boolean) => {
+    setExpandedCards(prev => {
+      const newSet = new Set(prev)
+      if (expanded) {
+        newSet.add(title)
+      } else {
+        newSet.delete(title)
+      }
+      return newSet
+    })
+  }
+
+  // 모든 카드 토글 핸들러
   const toggleAllCards = () => {
     if (expandedCards.size === projects.length) {
       setExpandedCards(new Set())
@@ -68,15 +82,7 @@ export function ProjectsSection() {
             key={idx}
             project={project}
             isExpanded={expandedCards.has(project.title)}
-            onToggle={expanded => {
-              const newExpandedCards = new Set(expandedCards)
-              if (expanded) {
-                newExpandedCards.add(project.title)
-              } else {
-                newExpandedCards.delete(project.title)
-              }
-              setExpandedCards(newExpandedCards)
-            }}
+            onToggle={expanded => handleToggleCard(project.title, expanded)}
           />
         ))}
       </div>
