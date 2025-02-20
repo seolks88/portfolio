@@ -1,4 +1,3 @@
-// src/components/project-card/ProjectCard.tsx
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import { Button } from '../ui/button'
@@ -35,7 +34,6 @@ export function ProjectCard({
     <motion.div
       layout='position'
       layoutId={`card-${project.title}`}
-      onClick={handleCardClick}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{
         opacity: 1,
@@ -48,10 +46,11 @@ export function ProjectCard({
       }}
       viewport={{ once: true, margin: '-100px' }}
       className={cn(
-        'group relative overflow-hidden rounded-lg border border-slate-200/80 bg-transparent p-6 transition-colors dark:border-slate-700/50',
-        isExpandable
-          ? 'cursor-pointer hover:bg-slate-50/50 dark:hover:bg-slate-800/50'
-          : 'cursor-default'
+        'group relative overflow-hidden rounded-lg border border-slate-200/80 bg-transparent p-6 transition-all duration-200 dark:border-slate-700/50',
+        isExpandable && [
+          'cursor-pointer hover:bg-slate-50/50 dark:hover:bg-slate-800/50',
+          'hover:shadow-md dark:hover:shadow-slate-900/50'
+        ]
       )}>
       <motion.div layout='position'>
         <ProjectCardHeader project={project} />
@@ -65,33 +64,35 @@ export function ProjectCard({
         {isExpanded && <ProjectCardDetail project={project} />}
       </AnimatePresence>
 
-      {/* 확장 가능한 경우에만 자세히 보기 아이콘 표시 */}
       {isExpandable && (
-        <motion.div
-          layout='position'
-          className='mt-4 flex justify-center'>
-          <motion.div
-            initial={false}
-            animate={{
-              rotate: isExpanded ? 180 : 0,
-              transition: {
-                type: 'spring',
-                stiffness: 260,
-                damping: 20
-              }
-            }}>
-            <Button
-              variant='ghost'
-              size='sm'
-              className='hover:bg-transparent'
-              onClick={e => {
-                e.stopPropagation()
-                onToggle(!isExpanded)
+        <div className='mt-4 flex justify-end'>
+          <Button
+            variant='ghost'
+            size='sm'
+            onClick={handleCardClick}
+            className='group/button text-muted-foreground hover:text-foreground'>
+            <span className='mr-2'>{isExpanded ? '접기' : '자세히 보기'}</span>
+            <motion.div
+              initial={false}
+              animate={{
+                rotate: isExpanded ? 180 : 0,
+                transition: {
+                  type: 'spring',
+                  stiffness: 260,
+                  damping: 20
+                }
               }}>
-              <ChevronDown className='h-4 w-4 text-muted-foreground opacity-0 transition-all duration-200 group-hover:opacity-100' />
-            </Button>
-          </motion.div>
-        </motion.div>
+              <ChevronDown className='h-4 w-4 transition-transform group-hover/button:translate-y-0.5' />
+            </motion.div>
+          </Button>
+        </div>
+      )}
+
+      {/* 상단 우측에 작은 힌트 추가 */}
+      {isExpandable && !isExpanded && (
+        <div className='absolute right-4 top-4 text-xs text-muted-foreground/70'>
+          클릭하여 상세보기
+        </div>
       )}
     </motion.div>
   )

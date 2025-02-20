@@ -1,8 +1,7 @@
-// src/components/project-card/ProjectCardHeader.tsx
 import { Briefcase, Calendar, Code2, Rocket, Timer } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
-import { Project, PROJECT_TYPES } from '../../types/portfolio'
-import { cn } from '../../lib/utils'
+import { Project, PROJECT_TYPES } from '@/types/portfolio'
+import { cn } from '@/lib/utils'
 
 function getProjectTypeStyles(type: string) {
   switch (type) {

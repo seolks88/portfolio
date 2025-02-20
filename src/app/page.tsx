@@ -18,7 +18,6 @@ import { ProjectsSection } from '@/components/sections/ProjectsSection'
 import { ResearchSection } from '@/components/sections/ResearchSection'
 
 export default function Home() {
-  // 우측 동그라미 목록 (첫 번째 항목: 인트로)
   const sections = [
     { id: 'intro', label: '소개' },
     { id: 'experience', label: '경력' },
@@ -28,13 +27,11 @@ export default function Home() {
     { id: 'research', label: '연구' }
   ]
 
-  // 스크롤 이동 함수
-  // 필요 시 headerOffset 값(헤더 높이)을 조절하세요
   const scrollToSection = (id: string) => {
     const target = document.getElementById(id)
     if (!target) return
 
-    const headerOffset = 80 // 고정 헤더 높이(px)
+    const headerOffset = 80
     const elementPosition = target.getBoundingClientRect().top
     const offsetPosition = window.pageYOffset + elementPosition - headerOffset
 
@@ -46,10 +43,8 @@ export default function Home() {
 
   return (
     <div className='relative min-h-screen'>
-      {/* 상단 스크롤 진행 표시 */}
       <ScrollProgress />
 
-      {/* 우측 동그라미 스크롤 스파이 */}
       <ScrollSpy
         sections={sections}
         offset={-100}
@@ -67,15 +62,14 @@ export default function Home() {
                   : 'border border-slate-300 bg-slate-200 hover:border-sky-400 dark:border-slate-600 dark:bg-slate-700 dark:hover:border-sky-500'
               )}
               aria-label={section.label}
+              data-tooltip={section.label}
             />
           ))
         }
       </ScrollSpy>
 
-      {/* 메인 콘텐츠 */}
       <main className='container mx-auto max-w-5xl px-4 py-6 sm:px-6 sm:py-10'>
-        {/* 상단 고정: 테마 토글 및 GitHub 링크 */}
-        <div className='fixed right-4 top-4 z-50 flex items-center gap-2'>
+        <div className='fixed right-4 top-4 z-50 hidden items-center gap-2 md:flex'>
           <Button
             variant='ghost'
             size='icon'
@@ -92,18 +86,17 @@ export default function Home() {
           <ThemeToggle />
         </div>
 
-        {/* [인트로 섹션] => id="intro" */}
         <motion.section
           id='intro'
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className='mb-16 flex flex-col items-center sm:mb-20'>
+          className='mb-20 flex flex-col items-center sm:mb-20'>
           <div className='relative mb-6 sm:mb-8'>
             <Avatar className='pointer-events-none h-28 w-28 shadow-md ring-4 ring-background transition-all duration-500 hover:scale-105 hover:shadow-lg sm:h-36 sm:w-36'>
               <AvatarImage
                 src='/avatar.png'
-                alt='설광수'
+                alt='설광수 프로필 사진'
                 className='object-cover object-center'
               />
               <AvatarFallback className='bg-primary/5 text-xl sm:text-2xl'>
@@ -150,8 +143,7 @@ export default function Home() {
           </p>
         </motion.section>
 
-        <div className='space-y-16 sm:space-y-24'>
-          {/* [경력 섹션] => id="experience" */}
+        <div className='space-y-20'>
           <motion.section
             id='experience'
             initial={{ opacity: 0, y: 20 }}
@@ -166,7 +158,6 @@ export default function Home() {
             <ExperienceSection />
           </motion.section>
 
-          {/* [학력 섹션] => id="education" */}
           <motion.section
             id='education'
             initial={{ opacity: 0, y: 20 }}
@@ -181,7 +172,6 @@ export default function Home() {
             <EducationSection />
           </motion.section>
 
-          {/* [기술 섹션] => id="skills" */}
           <motion.section
             id='skills'
             initial={{ opacity: 0, y: 20 }}
@@ -196,7 +186,6 @@ export default function Home() {
             <SkillsSection />
           </motion.section>
 
-          {/* [프로젝트 섹션] => id="projects" */}
           <motion.section
             id='projects'
             initial={{ opacity: 0, y: 20 }}
@@ -211,7 +200,6 @@ export default function Home() {
             <ProjectsSection />
           </motion.section>
 
-          {/* [연구 섹션] => id="research" */}
           <motion.section
             id='research'
             initial={{ opacity: 0, y: 20 }}

@@ -39,6 +39,13 @@
     --input: 240 5.9% 90%;
     --ring: 240 5.9% 10%;
     --radius: 0.75rem;
+
+    /* 색상 조정: 토이 프로젝트와 회사 프로젝트의 색상 차별화 유지 */
+    --accent-purple: 270 70% 60%; /* 명도 조정 */
+    --accent-blue: 210 70% 60%; /* 명도 조정 */
+
+    /* 새로운 이차 액센트 색상 */
+    --accent-green: 165 60% 50%;
   }
 
   .dark {
@@ -53,7 +60,7 @@
     --secondary: 220 10% 20%;
     --secondary-foreground: 0 0% 95%;
     --muted: 220 10% 20%;
-    --muted-foreground: 220 10% 75%;
+    --muted-foreground: 220 10% 75%; /* 대비 개선 */
     --accent: 220 10% 20%;
     --accent-foreground: 0 0% 95%;
     --destructive: 0 62.8% 30.6%;
@@ -65,6 +72,7 @@
     --muted-foreground: 220 10% 80%;
     --accent-purple: 270 80% 70%;
     --accent-blue: 210 75% 65%;
+    --accent-green: 165 60% 50%;
   }
 }
 
@@ -103,7 +111,6 @@
   }
 
   .text-balance {
-    /* Tailwind CSS 3.2 이상에서 지원하는 text-wrap: balance 속성 */
     text-wrap: balance;
     max-width: 70ch;
   }
@@ -114,6 +121,16 @@
 
   .text-heading-color {
     @apply text-slate-900 dark:text-slate-100;
+  }
+
+  /* 작은 화면에서 텍스트 크기 조정 */
+  @media (max-width: 640px) {
+    body {
+      font-size: 16px;
+    }
+    p {
+      @apply text-body-sm;
+    }
   }
 }
 
@@ -192,4 +209,29 @@
 
 .link-hover:hover::after {
   @apply w-full;
+}
+
+/* 툴팁 스타일링 (ScrollSpy용) */
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  white-space: nowrap;
+  z-index: 100;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+[data-tooltip]::after {
+  opacity: 0;
 }
