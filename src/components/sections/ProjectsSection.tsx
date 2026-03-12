@@ -41,7 +41,7 @@ export function ProjectsSection() {
             <div className='flex items-center gap-1.5'>
               <Rocket className='h-3.5 w-3.5 text-violet-500 dark:text-violet-400' />
               <span className='font-medium text-slate-600 dark:text-slate-300'>
-                토이 프로젝트
+                사이드 프로젝트
               </span>
             </div>
             <div className='h-3 w-px bg-slate-200 dark:bg-slate-700' />

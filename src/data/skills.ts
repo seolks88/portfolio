@@ -7,7 +7,7 @@ export const skills = [
         details: [
           '시맨틱/키워드 하이브리드 검색 시스템 구현 경험',
           '멀티턴 대화 컨텍스트 관리 및 프롬프트 최적화 경험',
-          '문서 청크 최적화 및 임베딩/VectorDB 파이프라인 구축 경험'
+          '문서 청크 최적화 및 임베딩 파이프라인 구축 경험'
         ]
       },
       {
@@ -16,14 +16,6 @@ export const skills = [
           'Multi-Agent 기반 코드 분석 시스템 구현 경험',
           'LangGraph 기반 자가회복 프로세스 설계 경험',
           '도메인 특화 프롬프트 엔지니어링 경험'
-        ]
-      },
-      {
-        name: '성능 최적화',
-        details: [
-          'RAG 파이프라인 응답 지연 최소화 경험',
-          'Human-in-the-Loop 기반 품질 관리 시스템 구축 경험',
-          '토큰 사용량 최적화 및 비용 효율화 경험'
         ]
       }
     ]
@@ -35,7 +27,6 @@ export const skills = [
         name: 'Python',
         details: [
           'FastAPI 기반 비동기 API 서버 구현 경험',
-          '대용량 데이터 처리 파이프라인 설계 경험',
           '분산 크롤링 및 자동 재시도 시스템 구현 경험'
         ]
       },
@@ -62,9 +53,7 @@ export const skills = [
         name: 'AWS',
         details: [
           'Lambda/API Gateway 기반 서버리스 아키텍처 설계 경험',
-          'IoT Core를 활용한 MQTT 기반 IoT 서버 개발 경험',
-          'DynamoDB를 활용한 NoSQL 데이터베이스 구축 경험',
-          'S3/CloudFront를 활용한 정적 웹사이트 배포 경험'
+          'IoT Core를 활용한 MQTT 기반 IoT 서버 개발 경험'
         ]
       },
       {
@@ -89,24 +78,15 @@ export const skills = [
       {
         name: 'React/Next.js',
         details: [
-          'TypeScript 기반 모던 웹 애플리케이션 개발 경험',
-          'Redux를 활용한 상태 관리 및 비동기 처리 경험',
-          'SSE/WebSocket 기반 실시간 스트리밍 UI 구현 경험'
+          'POC 수준의 웹 애플리케이션 프로토타입 개발 경험',
+          'Streamlit/Next.js 기반 데모 애플리케이션 구현 경험'
         ]
       },
       {
         name: 'UI/UX',
         details: [
-          'ShadcnUI/Tailwind 기반 반응형 디자인 구현 경험',
-          '실시간 채팅/스트리밍 인터페이스 설계 경험',
-          '사용자 피드백 기반 UI/UX 최적화 경험'
-        ]
-      },
-      {
-        name: '성능 최적화',
-        details: [
-          '컴포넌트 렌더링 최적화 및 메모이제이션 적용 경험',
-          '대량 데이터 처리를 위한 가상화 기법 적용 경험'
+          'ShadcnUI/Tailwind 활용 기본적인 반응형 디자인 구현',
+          '대화형 AI 서비스 UI/UX 설계 및 구현 경험'
         ]
       }
     ]

@@ -8,7 +8,9 @@ import { ThemeToggle } from '@/components/ui/theme-toggle'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Github } from 'lucide-react'
+import { trackSectionNavigate, trackSocialLink } from '@/lib/analytics'
 import { Separator } from '@/components/ui/separator'
+import { SocialButtons } from '@/components/SocialButtons'
 
 // 섹션 컴포넌트 임포트
 import { ExperienceSection } from '@/components/sections/ExperienceSection'
@@ -54,7 +56,10 @@ export default function Home() {
           sections.map(section => (
             <button
               key={section.id}
-              onClick={() => scrollToSection(section.id)}
+              onClick={() => {
+                trackSectionNavigate(section.id)
+                scrollToSection(section.id)
+              }}
               className={cn(
                 'flex h-3 w-3 rounded-full transition-all hover:scale-125',
                 active === section.id
@@ -79,7 +84,8 @@ export default function Home() {
               href='https://github.com/seolks88'
               target='_blank'
               rel='noopener noreferrer'
-              aria-label='GitHub 프로필 방문하기'>
+              aria-label='GitHub 프로필 방문하기'
+              onClick={() => trackSocialLink('github', 'hero')}>
               <Github className='h-4 w-4' />
             </a>
           </Button>
@@ -136,6 +142,10 @@ export default function Home() {
               </span>
               에 집중하고 있습니다.
             </p>
+          </div>
+
+          <div className='mt-6'>
+            <SocialButtons />
           </div>
 
           <p className='mt-4 text-xs text-muted-foreground/80'>

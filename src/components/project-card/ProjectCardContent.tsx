@@ -1,6 +1,7 @@
 import { Project, PROJECT_TYPES } from '@/types/portfolio'
 import { cn } from '../../lib/utils'
 import { Github, Play, FileText } from 'lucide-react'
+import { trackProjectLink } from '@/lib/analytics'
 
 interface ProjectCardContentProps {
   project: Project
@@ -139,6 +140,10 @@ export function ProjectCardContent({
                 href={project.github}
                 target='_blank'
                 rel='noopener noreferrer'
+                onClick={(e) => {
+                  e.stopPropagation()
+                  trackProjectLink(project.id, 'github')
+                }}
                 className={cn(
                   'inline-flex items-center gap-1.5 rounded-full px-3 py-1',
                   'text-sm font-medium',
@@ -156,6 +161,10 @@ export function ProjectCardContent({
                 href={project.demo.video.url}
                 target='_blank'
                 rel='noopener noreferrer'
+                onClick={(e) => {
+                  e.stopPropagation()
+                  trackProjectLink(project.id, 'demo_video')
+                }}
                 className={cn(
                   'inline-flex items-center gap-1.5 rounded-full px-3 py-1',
                   'text-sm font-medium',
@@ -173,6 +182,10 @@ export function ProjectCardContent({
                 href={project.demo.presentation.url}
                 target='_blank'
                 rel='noopener noreferrer'
+                onClick={(e) => {
+                  e.stopPropagation()
+                  trackProjectLink(project.id, 'presentation')
+                }}
                 className={cn(
                   'inline-flex items-center gap-1.5 rounded-full px-3 py-1',
                   'text-sm font-medium',

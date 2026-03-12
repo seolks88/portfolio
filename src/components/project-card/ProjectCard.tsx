@@ -6,6 +6,7 @@ import { ProjectCardHeader } from './ProjectCardHeader'
 import { ProjectCardContent } from './ProjectCardContent'
 import { ProjectCardDetail } from './ProjectCardDetail'
 import { cn } from '../../lib/utils'
+import { trackProjectSelect } from '@/lib/analytics'
 
 interface ProjectCardProps {
   project: Project
@@ -26,12 +27,19 @@ export function ProjectCard({
 
   const handleCardClick = () => {
     if (isExpandable) {
+      if (!isExpanded) trackProjectSelect(project.id)
       onToggle(!isExpanded)
     }
   }
 
+  const handleButtonClick = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    handleCardClick()
+  }
+
   return (
     <motion.div
+      onClick={handleCardClick}
       layout='position'
       layoutId={`card-${project.title}`}
       initial={{ opacity: 0, y: 20 }}
@@ -69,7 +77,7 @@ export function ProjectCard({
           <Button
             variant='ghost'
             size='sm'
-            onClick={handleCardClick}
+            onClick={handleButtonClick}
             className='group/button text-muted-foreground hover:text-foreground'>
             <span className='mr-2'>{isExpanded ? '접기' : '자세히 보기'}</span>
             <motion.div
@@ -85,13 +93,6 @@ export function ProjectCard({
               <ChevronDown className='h-4 w-4 transition-transform group-hover/button:translate-y-0.5' />
             </motion.div>
           </Button>
-        </div>
-      )}
-
-      {/* 상단 우측에 작은 힌트 추가 */}
-      {isExpandable && !isExpanded && (
-        <div className='absolute right-4 top-4 text-xs text-muted-foreground/70'>
-          클릭하여 상세보기
         </div>
       )}
     </motion.div>

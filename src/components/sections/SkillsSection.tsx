@@ -45,29 +45,20 @@ const CATEGORY_COLORS: Record<
 }
 
 export function SkillsSection() {
-  const coreTechStacks = {
-    'AI/LLM': ['LangChain', 'LlamaIndex', 'RAG', 'VectorDB'],
-    Backend: ['Python', 'FastAPI', 'Elasticsearch', 'DynamoDB', 'MQTT'],
+  const coreStacks = {
+    'AI/LLM': ['RAG', 'Agent', 'Prompt Engineering', 'Function Calling'],
+    Backend: ['Python', 'FastAPI', 'Elasticsearch', 'Firebase'],
     Cloud: ['AWS', 'GCP'],
-    Frontend: [
-      'React',
-      'Next.js',
-      'TypeScript',
-      'Redux',
-      'TailwindCSS',
-      'ShadcnUI',
-      'Framer Motion'
-    ],
-    Tools: ['Docker', 'Git', 'Firebase', 'Github Actions']
+    Frontend: ['React', 'Next.js', 'TypeScript', 'TailwindCSS']
   } as const
 
   return (
     <div className='max-w-full space-y-10'>
       {/* 주요 기술 스택 요약 */}
-      <div className='mx-4 rounded-lg border border-slate-200 bg-gradient-to-br from-slate-50/50 via-white to-slate-50/30 shadow-sm dark:border-slate-800 dark:from-slate-800/40 dark:via-slate-900/40 dark:to-slate-800/30 sm:mx-0'>
+      <BaseCard className='mx-4 sm:mx-0'>
         <div className='space-y-5 p-4 sm:p-6'>
           <div className='flex items-center gap-3'>
-            <div className='rounded-md bg-gradient-to-br from-slate-100 to-white p-2 shadow-sm ring-1 ring-slate-200/50 transition-colors duration-200 group-hover:ring-slate-300/50 dark:from-slate-800 dark:to-slate-900 dark:ring-slate-700/50 dark:group-hover:ring-slate-600/50'>
+            <div className='rounded-md bg-gradient-to-br from-slate-100 to-white p-2 shadow-sm ring-1 ring-slate-200/50 dark:from-slate-800 dark:to-slate-900 dark:ring-slate-700/50'>
               <Code className='h-5 w-5 text-slate-600/80 dark:text-slate-300/80' />
             </div>
             <h3 className='bg-gradient-to-br from-slate-900 to-slate-600 bg-clip-text text-heading-3 font-semibold tracking-tight text-transparent dark:from-slate-100 dark:to-slate-400'>
@@ -76,10 +67,10 @@ export function SkillsSection() {
           </div>
 
           <div className='text-body-color space-y-3'>
-            {Object.entries(coreTechStacks).map(([category, techs]) => (
+            {Object.entries(coreStacks).map(([category, techs]) => (
               <div
                 key={category}
-                className='group flex flex-wrap items-center gap-4 rounded-md transition-colors duration-200 hover:bg-slate-50/50 dark:hover:bg-slate-800/50'>
+                className='group flex flex-wrap items-center gap-4 rounded-md p-2 transition-colors duration-200 hover:bg-slate-50/50 dark:hover:bg-slate-800/50'>
                 <span className='w-[90px] text-[15px] font-medium tracking-tight text-slate-700 dark:text-slate-300'>
                   {category}
                 </span>
@@ -99,7 +90,7 @@ export function SkillsSection() {
             ))}
           </div>
         </div>
-      </div>
+      </BaseCard>
 
       {/* 기존 상세 스킬 섹션 */}
       <div className='mx-4 grid gap-8 sm:mx-0 sm:grid-cols-1 md:grid-cols-2'>

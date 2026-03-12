@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { trackSectionView } from '@/lib/analytics'
 
 interface ScrollSpyProps {
   sections: { id: string; label: string }[]
@@ -28,6 +29,22 @@ export function ScrollSpy({
   children
 }: ScrollSpyProps) {
   const [active, setActive] = useState('')
+  const viewTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const trackedRef = useRef<string>('')
+
+  useEffect(() => {
+    if (!active || active === trackedRef.current) {
+      if (viewTimerRef.current) clearTimeout(viewTimerRef.current)
+      return
+    }
+    viewTimerRef.current = setTimeout(() => {
+      trackSectionView(active)
+      trackedRef.current = active
+    }, 1500)
+    return () => {
+      if (viewTimerRef.current) clearTimeout(viewTimerRef.current)
+    }
+  }, [active])
 
   useEffect(() => {
     const handleScroll = () => {

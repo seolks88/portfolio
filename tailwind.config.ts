@@ -80,7 +80,9 @@ const config: Config = {
         brandSecondary: {
           DEFAULT: '#ff8b13',
           dark: '#d16f0d'
-        }
+        },
+        // 새로운 이차 액센트 색상
+        accentGreen: 'hsl(var(--accent-green))'
       },
       borderRadius: {
         lg: 'var(--radius)',

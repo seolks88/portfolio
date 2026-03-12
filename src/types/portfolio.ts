@@ -58,7 +58,7 @@ export enum PROJECT_TYPES {
 interface DemoContent {
   title: string
   url: string
-  embedUrl: string
+  embedUrl?: string
 }
 
 export interface Demo {
@@ -89,6 +89,7 @@ interface ProjectLinks {
 }
 
 export interface Project {
+  id: string
   title: string
   subtitle?: string
   award?: string
